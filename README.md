@@ -1,4 +1,4 @@
-#  `Context` (rawcontext.com)
+#  `Context`
 
 Marketing site for Context — open-source tools for autonomous AI systems.
 
