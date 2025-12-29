@@ -1,0 +1,15 @@
+// Typography System
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Ubuntu Mono', monospace;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.gradient-text {
+    @include gradient-text();
+}

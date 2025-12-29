@@ -1,0 +1,699 @@
+// Hero Section - Asymmetric Editorial
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--space-2xl) 0 var(--space-xl);
+    position: relative;
+}
+
+.hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.hero-content {
+    position: relative;
+}
+
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--signal-primary);
+    margin-bottom: var(--space-md);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+
+    &::before {
+        content: '';
+        width: 40px;
+        height: 2px;
+        background: var(--signal-primary);
+    }
+}
+
+.hero h1 {
+    font-size: clamp(4rem, 10vw, 8rem);
+    margin-bottom: var(--space-md);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: slideReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.hero-tagline {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.hero-visual {
+    position: relative;
+    height: 500px;
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.8s forwards;
+}
+
+// ============================================
+// COSMIC ORRERY - Elaborate Solar System
+// ============================================
+
+.orrery {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 460px;
+    height: 460px;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-out;
+}
+
+// Deep space background layer
+.orrery-cosmos {
+    position: absolute;
+    inset: -60px;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 0.8;
+}
+
+.star-field {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 40px 70px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 50px 160px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 130px 80px, var(--signal-primary), transparent),
+        radial-gradient(1px 1px at 160px 120px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 200px 20px, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 220px 90px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1.5px 1.5px at 260px 50px, var(--signal-secondary), transparent),
+        radial-gradient(1px 1px at 290px 140px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 320px 30px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 350px 100px, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 380px 60px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 420px 120px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 450px 40px, var(--signal-primary), transparent),
+        radial-gradient(1px 1px at 480px 90px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 100px 200px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 180px 240px, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1.5px 1.5px at 250px 280px, var(--signal-secondary), transparent),
+        radial-gradient(1px 1px at 320px 220px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 400px 260px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 60px 300px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 140px 340px, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 220px 380px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1.5px 1.5px at 300px 320px, var(--signal-primary), transparent),
+        radial-gradient(1px 1px at 380px 360px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 440px 300px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 500px 340px, rgba(255, 255, 255, 0.5), transparent),
+        radial-gradient(1px 1px at 80px 420px, rgba(255, 255, 255, 0.7), transparent),
+        radial-gradient(1px 1px at 160px 460px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 240px 440px, var(--signal-secondary), transparent),
+        radial-gradient(1px 1px at 340px 480px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 420px 420px, rgba(255, 255, 255, 0.5), transparent);
+    animation: starTwinkle 8s ease-in-out infinite;
+}
+
+.nebula {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 30% 40%, rgba(0, 212, 255, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 70% 60%, rgba(255, 200, 87, 0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 50% at 50% 80%, rgba(138, 43, 226, 0.04) 0%, transparent 40%);
+    filter: blur(30px);
+    animation: nebulaShift 20s ease-in-out infinite alternate;
+}
+
+// Orbital rings container
+.orrery-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+}
+
+.orbital-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transform-style: preserve-3d;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -1px;
+        border-radius: 50%;
+        border: 1px solid;
+        border-color: inherit;
+        opacity: 0.3;
+    }
+
+    // Generated from $orbital-rings map
+    @each $num, $config in $orbital-rings {
+        $size: map-get($config, size);
+        $color: map-get($config, color);
+        $duration: map-get($config, duration);
+        $reverse: map-get($config, reverse);
+        $dashed: map-get($config, dashed);
+
+        &--#{$num} {
+            width: $size;
+            height: $size;
+            border-color: $color;
+            @if $dashed {
+                border-style: dashed;
+            }
+            animation: ringOrbit $duration linear infinite if($reverse, reverse, normal);
+        }
+    }
+}
+
+// Asteroid belt
+.asteroid-belt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 58%;
+    height: 58%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    animation: ringOrbit 80s linear infinite;
+}
+
+.asteroid {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+
+    @for $i from 1 through 12 {
+        &:nth-child(#{$i}) {
+            $angle: ($i - 1) * 30deg;
+            $size: 1px + random(2) * 1px;
+            $distance: 48% + random(4) * 1%;
+            width: $size;
+            height: $size;
+            top: calc(50% - #{$distance} * sin(#{$angle}));
+            left: calc(50% + #{$distance} * cos(#{$angle}));
+            opacity: 0.3 + random() * 0.5;
+            animation: asteroidDrift #{10 + $i * 2}s linear infinite;
+        }
+    }
+
+    // Manual positioning for consistent rendering
+    &:nth-child(1) { top: 2%; left: 50%; }
+    &:nth-child(2) { top: 8%; left: 72%; }
+    &:nth-child(3) { top: 25%; left: 88%; }
+    &:nth-child(4) { top: 50%; left: 96%; }
+    &:nth-child(5) { top: 75%; left: 88%; }
+    &:nth-child(6) { top: 92%; left: 72%; }
+    &:nth-child(7) { top: 98%; left: 50%; }
+    &:nth-child(8) { top: 92%; left: 28%; }
+    &:nth-child(9) { top: 75%; left: 12%; }
+    &:nth-child(10) { top: 50%; left: 4%; }
+    &:nth-child(11) { top: 25%; left: 12%; }
+    &:nth-child(12) { top: 8%; left: 28%; }
+}
+
+// Stellar core - the sun
+.stellar-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    z-index: 10;
+}
+
+// Outer corona - wispy extended atmosphere
+.core-corona {
+    position: absolute;
+    inset: -50px;
+    background:
+        radial-gradient(circle, rgba(255, 220, 120, 0.15) 20%, transparent 60%),
+        radial-gradient(ellipse 120% 80% at 50% 50%, rgba(255, 180, 80, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 120% at 50% 50%, rgba(255, 160, 60, 0.08) 0%, transparent 50%);
+    border-radius: 50%;
+    filter: blur(12px);
+    animation: coronaPulse 4s ease-in-out infinite;
+
+    // Corona streamers
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -20px;
+        background:
+            conic-gradient(from 0deg,
+                transparent 0deg,
+                rgba(255, 200, 100, 0.12) 15deg,
+                transparent 30deg,
+                transparent 60deg,
+                rgba(255, 180, 80, 0.1) 75deg,
+                transparent 90deg,
+                transparent 120deg,
+                rgba(255, 220, 120, 0.08) 140deg,
+                transparent 160deg,
+                transparent 200deg,
+                rgba(255, 190, 90, 0.1) 220deg,
+                transparent 240deg,
+                transparent 280deg,
+                rgba(255, 200, 100, 0.12) 300deg,
+                transparent 320deg,
+                transparent 360deg
+            );
+        border-radius: 50%;
+        filter: blur(8px);
+        animation: coronaSpin 60s linear infinite;
+    }
+}
+
+// Chromosphere - reddish inner atmosphere
+.core-chromosphere {
+    position: absolute;
+    inset: -8px;
+    background: radial-gradient(
+        circle,
+        transparent 60%,
+        rgba(255, 100, 50, 0.3) 75%,
+        rgba(255, 80, 30, 0.15) 90%,
+        transparent 100%
+    );
+    border-radius: 50%;
+    filter: blur(3px);
+    animation: chromospherePulse 3s ease-in-out infinite;
+}
+
+// Main photosphere surface
+.core-surface {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        // Bright hotspot
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, transparent 25%),
+        // Granulation texture
+        radial-gradient(circle at 20% 60%, rgba(255, 240, 200, 0.6) 0%, transparent 15%),
+        radial-gradient(circle at 70% 25%, rgba(255, 235, 180, 0.5) 0%, transparent 12%),
+        radial-gradient(circle at 55% 70%, rgba(255, 230, 170, 0.4) 0%, transparent 18%),
+        radial-gradient(circle at 40% 45%, rgba(255, 245, 210, 0.5) 0%, transparent 14%),
+        // Base gradient
+        radial-gradient(circle at 35% 35%,
+            #fffaf0 0%,
+            #fff5d4 15%,
+            #ffdd77 35%,
+            #ffaa33 60%,
+            #ee7700 80%,
+            #cc4400 100%
+        );
+    box-shadow:
+        0 0 20px #ffcc44,
+        0 0 40px rgba(255, 180, 50, 0.7),
+        0 0 70px rgba(255, 140, 40, 0.5),
+        0 0 100px rgba(255, 100, 30, 0.3),
+        inset 2px 2px 10px rgba(255, 255, 255, 0.6),
+        inset -3px -3px 15px rgba(180, 80, 0, 0.4);
+    animation: coreSurface 8s ease-in-out infinite;
+
+    // Surface turbulence overlay
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background:
+            radial-gradient(circle at 65% 55%, rgba(200, 100, 0, 0.2) 0%, transparent 20%),
+            radial-gradient(circle at 35% 75%, rgba(180, 80, 0, 0.15) 0%, transparent 15%);
+        animation: sunspots 12s ease-in-out infinite;
+    }
+
+    // Limb darkening effect
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: radial-gradient(circle, transparent 50%, rgba(200, 80, 0, 0.25) 85%, rgba(150, 50, 0, 0.4) 100%);
+    }
+}
+
+// Solar flares / prominences
+.core-flare {
+    position: absolute;
+    height: 3px;
+    transform-origin: left center;
+    filter: blur(1px);
+    opacity: 0;
+
+    &--1 {
+        top: 20%;
+        left: 50%;
+        width: 45px;
+        background: linear-gradient(90deg, rgba(255, 200, 100, 0.9), rgba(255, 150, 50, 0.4), transparent);
+        transform: rotate(-35deg);
+        animation: solarFlare 5s ease-in-out infinite;
+    }
+
+    &--2 {
+        top: 65%;
+        left: 50%;
+        width: 38px;
+        background: linear-gradient(90deg, rgba(255, 180, 80, 0.85), rgba(255, 120, 40, 0.3), transparent);
+        transform: rotate(25deg);
+        animation: solarFlare 5s ease-in-out 1.7s infinite;
+    }
+
+    &--3 {
+        top: 42%;
+        left: 50%;
+        width: 50px;
+        background: linear-gradient(90deg, rgba(255, 220, 120, 0.9), rgba(255, 160, 60, 0.35), transparent);
+        transform: rotate(8deg);
+        animation: solarFlare 5s ease-in-out 3.4s infinite;
+    }
+}
+
+// Planetary system container
+.planetary-system {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+}
+
+// Individual planet orbits
+.planet-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+
+    &--1 {
+        width: 22%;
+        height: 22%;
+        animation: planetOrbit 8s linear infinite;
+        animation-delay: -2s; // Start at ~90°
+    }
+
+    &--2 {
+        width: 34%;
+        height: 34%;
+        animation: planetOrbit 14s linear infinite;
+        animation-delay: -10.5s; // Start at ~270°
+    }
+
+    &--3 {
+        width: 48%;
+        height: 48%;
+        animation: planetOrbit 24s linear infinite;
+        animation-delay: -6s; // Start at ~90°
+    }
+
+    &--4 {
+        width: 68%;
+        height: 68%;
+        animation: planetOrbit 40s linear infinite;
+        animation-delay: -25s; // Start at ~225°
+    }
+
+    &--5 {
+        width: 92%;
+        height: 92%;
+        animation: planetOrbit 70s linear infinite;
+        animation-delay: -52.5s; // Start at ~270°
+    }
+}
+
+// Base planet styles
+.planet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-radius: 50%;
+
+    // Mercury - small, gray, cratered
+    &--mercury {
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(circle at 25% 25%, #e0e0e0 0%, #a0a0a0 30%, #606060 60%, #202020 100%);
+        box-shadow:
+            inset 1px 1px 2px rgba(255, 255, 255, 0.4),
+            inset -1px -1px 3px rgba(0, 0, 0, 0.8),
+            0 0 8px rgba(255, 200, 87, 0.4);
+        animation: planetCounterOrbit 8s linear infinite;
+        animation-delay: -2s;
+    }
+
+    // Venus - yellowish, thick atmosphere
+    &--venus {
+        width: 9px;
+        height: 9px;
+        background: radial-gradient(circle at 25% 25%, #fff5e0 0%, #ffe4b5 25%, #daa520 55%, #8b6914 100%);
+        box-shadow:
+            inset 1px 1px 3px rgba(255, 255, 255, 0.5),
+            inset -2px -2px 4px rgba(0, 0, 0, 0.6),
+            0 0 12px rgba(255, 228, 181, 0.5);
+        animation: planetCounterOrbit 14s linear infinite;
+        animation-delay: -10.5s;
+    }
+
+    // Earth - blue marble with atmosphere
+    &--earth {
+        width: 10px;
+        height: 10px;
+        background: radial-gradient(circle at 25% 25%, #7ec8e3 0%, #4a90d9 30%, #2e6b9e 55%, #0d2840 100%);
+        box-shadow:
+            inset 1px 1px 3px rgba(255, 255, 255, 0.5),
+            inset -2px -2px 5px rgba(0, 0, 0, 0.7),
+            0 0 10px rgba(0, 212, 255, 0.5),
+            0 0 20px rgba(74, 144, 217, 0.3);
+        animation: planetCounterOrbit 24s linear infinite;
+        animation-delay: -6s;
+
+        // Atmosphere glow
+        &::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: radial-gradient(circle, transparent 40%, rgba(100, 180, 255, 0.3) 70%, transparent 100%);
+        }
+    }
+
+    // Mars - red, dusty
+    &--mars {
+        width: 7px;
+        height: 7px;
+        background: radial-gradient(circle at 25% 25%, #ff9070 0%, #e07050 30%, #c1440e 55%, #5c1a00 100%);
+        box-shadow:
+            inset 1px 1px 2px rgba(255, 200, 180, 0.4),
+            inset -1px -1px 4px rgba(0, 0, 0, 0.7),
+            0 0 8px rgba(224, 112, 80, 0.4);
+        animation: planetCounterOrbit 40s linear infinite;
+        animation-delay: -25s;
+    }
+
+    // Jupiter - gas giant with bands
+    &--jupiter {
+        width: 18px;
+        height: 18px;
+        background:
+            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.3) 0%, transparent 35%),
+            radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.5) 0%, transparent 45%),
+            linear-gradient(180deg,
+                #d4a574 0%,
+                #c9956a 15%,
+                #e8cba8 25%,
+                #c9956a 35%,
+                #a67c52 50%,
+                #c9956a 65%,
+                #e8cba8 75%,
+                #d4a574 85%,
+                #a67c52 100%
+            );
+        box-shadow:
+            inset 2px 2px 5px rgba(255, 255, 255, 0.3),
+            inset -3px -3px 8px rgba(0, 0, 0, 0.5),
+            0 0 15px rgba(212, 165, 116, 0.4),
+            0 0 30px rgba(169, 124, 82, 0.25);
+        animation: planetCounterOrbit 70s linear infinite;
+        animation-delay: -52.5s;
+
+        // Great Red Spot
+        &::before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 3px;
+            background: radial-gradient(ellipse, #cc6644 0%, transparent 70%);
+            border-radius: 50%;
+            top: 55%;
+            left: 30%;
+        }
+    }
+}
+
+// Orbital trails
+.planet-trail {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--signal-primary-dim));
+    transform: translateY(-50%) translateX(-100%);
+    opacity: 0.4;
+    filter: blur(1px);
+
+    .planet--venus & {
+        background: linear-gradient(90deg, transparent, rgba(255, 228, 181, 0.4));
+    }
+
+    .planet--earth & {
+        background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.4));
+    }
+
+    .planet--mars & {
+        background: linear-gradient(90deg, transparent, rgba(224, 112, 80, 0.3));
+    }
+
+    .planet--jupiter & {
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.3));
+    }
+}
+
+// Moon orbits
+.moon-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    width: 24px;
+    height: 24px;
+    animation: moonOrbit 3s linear infinite;
+
+    &--io {
+        width: 32px;
+        height: 32px;
+        animation-duration: 4s;
+    }
+}
+
+.moon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 3px;
+    background: #c0c0c0;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+
+    &--io {
+        width: 4px;
+        height: 4px;
+        background: linear-gradient(135deg, #ffcc66, #cc9933);
+        box-shadow: 0 0 6px rgba(255, 200, 100, 0.5);
+    }
+}
+
+// Comet
+.comet-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 60%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    animation: cometOrbit 25s linear infinite;
+}
+
+.comet {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.comet-nucleus {
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #fff 0%, #88ddff 50%, #0088cc 100%);
+    border-radius: 50%;
+    box-shadow:
+        0 0 8px #00d4ff,
+        0 0 15px rgba(0, 212, 255, 0.6);
+}
+
+.comet-tail {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.1) 30%, rgba(0, 212, 255, 0.4) 70%, #00d4ff 100%);
+    transform: translateY(-50%);
+    filter: blur(2px);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -3px;
+        right: 0;
+        width: 60px;
+        height: 7px;
+        background: linear-gradient(90deg, transparent, rgba(136, 221, 255, 0.2));
+        filter: blur(3px);
+    }
+}
+
+// Gravitational lens effect
+.gravity-lens {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(
+        circle,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 200, 87, 0.02) 60%,
+        rgba(0, 212, 255, 0.03) 80%,
+        transparent 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    animation: lensWarp 6s ease-in-out infinite;
+}

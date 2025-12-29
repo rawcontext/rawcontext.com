@@ -1,0 +1,197 @@
+// Variables and CSS Custom Properties
+
+:root {
+    // Core palette - slate blue to match logo
+    --void: rgb(42, 56, 82);
+    --void-elevated: rgb(52, 68, 96);
+    --void-surface: rgb(62, 80, 110);
+    --void-border: rgb(72, 92, 124);
+
+    // Accent - electric cyan with amber spark
+    --signal-primary: #00d4ff;
+    --signal-primary-dim: rgba(0, 212, 255, 0.4);
+    --signal-secondary: #ffc857;
+    --signal-secondary-dim: rgba(255, 200, 87, 0.5);
+
+    // Text hierarchy
+    --text-primary: #f0f0f5;
+    --text-secondary: #9898a8;
+    --text-tertiary: #5a5a6e;
+
+    // Effects
+    --glow-primary: 0 0 60px rgba(0, 212, 255, 0.25);
+    --glow-secondary: 0 0 40px rgba(255, 200, 87, 0.2);
+
+    // Spacing system
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 8rem;
+    --space-2xl: 12rem;
+
+    // Animation timing
+    --duration-fast: 0.3s;
+    --duration-base: 0.5s;
+    --duration-slow: 0.8s;
+    --duration-slower: 1s;
+
+    // Z-index scale
+    --z-base: 1;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 30;
+    --z-modal: 100;
+
+    // Border radius
+    --radius-sm: 3px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 50%;
+}
+
+// ============================================
+// Sass Variables (for loops/calculations)
+// ============================================
+
+// Color definitions for Sass functions
+$color-primary: #00d4ff;
+$color-secondary: #ffc857;
+$color-memory: #a855f7;
+$color-white: #ffffff;
+
+// Memory node animation delays (prime-based for organic feel)
+$node-delays: (
+    0.17s, 1.23s, 0.61s, 2.11s, 0.37s, 1.79s, 0.89s, 2.53s,
+    0.43s, 1.97s, 0.71s, 2.31s, 0.29s, 1.67s, 0.97s, 2.41s,
+    0.13s, 1.51s, 0.79s, 2.17s, 0.53s, 1.89s, 0.31s, 2.03s,
+    0.67s, 1.43s, 0.19s, 2.29s, 0.83s, 1.37s, 0.47s, 2.07s,
+    0.11s, 1.61s, 0.73s, 2.23s, 0.41s, 1.93s, 0.59s, 2.47s,
+    0.23s, 1.73s, 0.91s, 2.13s, 0.37s, 1.57s, 0.67s, 2.37s
+);
+
+$scattered-delays: (
+    0.53s, 1.81s, 0.29s, 2.19s, 0.71s, 1.47s, 0.17s, 2.03s,
+    0.89s, 1.31s, 0.43s, 1.97s, 0.61s, 2.41s, 0.79s, 1.63s
+);
+
+// Memory node positions (organized by cluster)
+$node-positions: (
+    // Cluster A: Top outer (12 o'clock)
+    n1: (top: 3%, left: 46%), n2: (top: 6%, left: 52%),
+    n3: (top: 5%, left: 40%), n4: (top: 8%, left: 56%),
+    // Cluster B: Right outer (3 o'clock)
+    n5: (top: 46%, left: 94%), n6: (top: 52%, left: 92%),
+    n7: (top: 48%, left: 88%), n8: (top: 56%, left: 95%),
+    // Cluster C: Bottom outer (6 o'clock)
+    n9: (top: 94%, left: 48%), n10: (top: 92%, left: 54%),
+    n11: (top: 96%, left: 42%), n12: (top: 90%, left: 58%),
+    // Cluster D: Left outer (9 o'clock)
+    n13: (top: 48%, left: 4%), n14: (top: 54%, left: 6%),
+    n15: (top: 44%, left: 8%), n16: (top: 58%, left: 5%),
+    // Cluster E: Top-right middle
+    n17: (top: 16%, left: 72%), n18: (top: 20%, left: 78%),
+    n19: (top: 24%, left: 74%), n20: (top: 18%, left: 68%),
+    // Cluster F: Bottom-right middle
+    n21: (top: 74%, left: 76%), n22: (top: 78%, left: 82%),
+    n23: (top: 82%, left: 74%), n24: (top: 76%, left: 70%),
+    // Cluster G: Bottom-left middle
+    n25: (top: 76%, left: 22%), n26: (top: 80%, left: 28%),
+    n27: (top: 84%, left: 20%), n28: (top: 78%, left: 16%),
+    // Cluster H: Top-left middle
+    n29: (top: 18%, left: 24%), n30: (top: 22%, left: 30%),
+    n31: (top: 26%, left: 22%), n32: (top: 20%, left: 18%),
+    // Cluster I: Top inner
+    n33: (top: 30%, left: 46%), n34: (top: 34%, left: 52%),
+    n35: (top: 32%, left: 58%), n36: (top: 36%, left: 44%),
+    // Cluster J: Right inner
+    n37: (top: 46%, left: 68%), n38: (top: 52%, left: 72%),
+    n39: (top: 56%, left: 66%), n40: (top: 48%, left: 64%),
+    // Cluster K: Bottom inner
+    n41: (top: 66%, left: 48%), n42: (top: 70%, left: 54%),
+    n43: (top: 68%, left: 42%), n44: (top: 64%, left: 56%),
+    // Cluster L: Left inner
+    n45: (top: 48%, left: 30%), n46: (top: 54%, left: 34%),
+    n47: (top: 52%, left: 28%), n48: (top: 58%, left: 32%)
+);
+
+$scattered-positions: (
+    // Outer orphans
+    s1: (top: 12%, left: 85%), s2: (top: 86%, left: 80%),
+    s3: (top: 88%, left: 15%), s4: (top: 14%, left: 10%),
+    // Middle orphans
+    s5: (top: 38%, left: 82%), s6: (top: 62%, left: 86%),
+    s7: (top: 86%, left: 45%), s8: (top: 64%, left: 12%),
+    s9: (top: 36%, left: 14%), s10: (top: 14%, left: 55%),
+    // Inner orphans
+    s11: (top: 40%, left: 40%), s12: (top: 42%, left: 62%),
+    s13: (top: 62%, left: 60%), s14: (top: 60%, left: 38%),
+    s15: (top: 44%, left: 54%), s16: (top: 56%, left: 46%)
+);
+
+// Cluster animation configs (name, highlight-type, duration, delay)
+$cluster-configs: (
+    a: (type: cyan, duration: 2.3s, delay: 0.17s),
+    b: (type: cyan, duration: 2.5s, delay: 0.83s),
+    c: (type: amber, duration: 2.7s, delay: 1.47s),
+    d: (type: cyan, duration: 2.4s, delay: 0.53s),
+    e: (type: cyan, duration: 2.2s, delay: 0.31s),
+    f: (type: amber, duration: 2.6s, delay: 1.13s),
+    g: (type: cyan, duration: 2.3s, delay: 0.67s),
+    h: (type: amber, duration: 2.8s, delay: 1.79s),
+    i: (type: cyan, duration: 1.9s, delay: 0.23s),
+    j: (type: cyan, duration: 2.1s, delay: 0.71s),
+    k: (type: amber, duration: 2.0s, delay: 1.03s),
+    l: (type: cyan, duration: 2.2s, delay: 0.43s)
+);
+
+// Neuron positions (brain animation)
+$neuron-positions: (
+    // Frontal region
+    n1: (top: 22%, left: 24%), n2: (top: 28%, left: 32%),
+    n3: (top: 37%, left: 26%), n4: (top: 33%, left: 20%),
+    n5: (top: 42%, left: 34%),
+    // Hippocampus region (memory center)
+    n6: (top: 39%, left: 46%), n7: (top: 38%, left: 53%),
+    n8: (top: 45%, left: 59%), n9: (top: 46%, left: 49%),
+    n10: (top: 45%, left: 55%), n11: (top: 51%, left: 56%),
+    n12: (top: 49%, left: 61%), n13: (top: 52%, left: 51%),
+    n14: (top: 51%, left: 66%),
+    // Parietal region
+    n15: (top: 18%, left: 72%), n16: (top: 22%, left: 80%),
+    n17: (top: 30%, left: 79%), n18: (top: 30%, left: 84%),
+    n19: (top: 40%, left: 82%),
+    // Temporal region
+    n20: (top: 58%, left: 41%), n21: (top: 63%, left: 50%),
+    n22: (top: 62%, left: 61%), n23: (top: 71%, left: 57%),
+    // Occipital region
+    n24: (top: 55%, left: 71%), n25: (top: 63%, left: 80%),
+    // Brain stem
+    n26: (top: 91%, left: 36%)
+);
+
+// Engram formation positions
+$engram-configs: (
+    1: (top: 45%, left: 52%, delay: 0s),
+    2: (top: 49%, left: 58%, delay: 3.3s),
+    3: (top: 47%, left: 48%, delay: 6.7s)
+);
+
+// Impulse path configs
+$impulse-configs: (
+    1: (path: A, duration: 8s, delay: 0s),
+    2: (path: B, duration: 9s, delay: 2.3s),
+    3: (path: C, duration: 7s, delay: 4.1s),
+    4: (path: D, duration: 10s, delay: 1.7s),
+    5: (path: E, duration: 8.5s, delay: 3.9s),
+    6: (path: F, duration: 9.5s, delay: 5.7s)
+);
+
+// Orbital ring configs
+$orbital-rings: (
+    1: (size: 22%, color: rgba(0, 212, 255, 0.25), duration: 40s, reverse: false),
+    2: (size: 34%, color: rgba(255, 200, 87, 0.2), duration: 40s, reverse: false),
+    3: (size: 48%, color: rgba(0, 212, 255, 0.18), duration: 40s, reverse: false),
+    4: (size: 68%, color: rgba(255, 200, 87, 0.12), duration: 60s, reverse: true, dashed: true),
+    5: (size: 92%, color: rgba(0, 212, 255, 0.1), duration: 40s, reverse: false)
+);

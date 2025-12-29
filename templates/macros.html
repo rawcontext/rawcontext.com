@@ -1,0 +1,39 @@
+{# Service card macro - renders a project card
+   Parameters:
+   - project: the project/page object
+   - index: the loop index for numbering
+   - as_link: if true, the entire card is a link (default: false)
+#}
+{% macro service_card(project, index, as_link=false) %}
+{% if as_link %}
+<a href="{{ project.path }}" class="service-card">
+{% else %}
+<div class="service-card">
+{% endif %}
+    <div class="service-number">{{ "0" ~ index }}</div>
+    <h3 class="service-name">{{ project.title }}</h3>
+    <span class="service-status {{ project.extra.status }}">
+        {% if project.extra.status == "available" %}Available{% else %}Coming Soon{% endif %}
+    </span>
+    <p class="service-desc">{{ project.extra.short_description }}</p>
+    {% if as_link %}
+    <span class="service-link">
+        Learn More
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+    </span>
+    {% elif project.extra.status == "available" %}
+    <a href="{{ project.path }}" class="service-link">
+        Learn More
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+    </a>
+    {% endif %}
+{% if as_link %}
+</a>
+{% else %}
+</div>
+{% endif %}
+{% endmacro %}

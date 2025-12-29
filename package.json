@@ -1,0 +1,15 @@
+{
+  "name": "rawcontext-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsgo --noEmit"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@typescript/native-preview": "^7.0.0-dev"
+  }
+}

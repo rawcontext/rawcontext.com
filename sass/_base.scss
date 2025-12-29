@@ -1,0 +1,37 @@
+// Base Reset and Global Styles
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+
+    // Prevent FOUC - hide until fonts ready
+    visibility: hidden;
+
+    &.fonts-loaded,
+    &.fonts-failed {
+        visibility: visible;
+    }
+}
+
+// Fallback if JS fails
+.no-js html {
+    visibility: visible;
+}
+
+body {
+    font-family: 'Ubuntu Mono', monospace;
+    background: var(--void);
+    color: var(--text-primary);
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}

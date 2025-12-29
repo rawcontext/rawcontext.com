@@ -1,0 +1,10 @@
+base_url = "https://rawcontext.com"
+title = "Context"
+description = "Intelligent infrastructure for AI agents"
+compile_sass = true
+minify_html = true
+
+[markdown]
+highlight_code = false
+
+[extra]

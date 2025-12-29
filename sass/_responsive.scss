@@ -1,0 +1,63 @@
+// Responsive Breakpoints
+
+@media (max-width: 1024px) {
+    .hero-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        display: none;
+    }
+
+    .section-header {
+        grid-template-columns: 1fr;
+    }
+
+    .section-description {
+        justify-self: start;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--space-md);
+    }
+
+    .hero {
+        padding: var(--space-xl) 0;
+    }
+
+    .services {
+        padding: var(--space-lg) 0;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-card {
+        padding: var(--space-md);
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        text-align: center;
+    }
+
+    .footer-brand {
+        justify-content: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+    .copyright {
+        text-align: center;
+    }
+
+    nav {
+        gap: var(--space-md);
+    }
+}

@@ -1,0 +1,60 @@
+// Footer
+
+footer {
+    padding: var(--space-xl) 0 var(--space-lg);
+    border-top: 1px solid var(--void-border);
+    margin-top: var(--space-lg);
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+
+    img {
+        width: 32px;
+        height: 32px;
+        opacity: 0.7;
+    }
+
+    span {
+        font-family: 'Ubuntu Mono', monospace;
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--space-lg);
+
+    a {
+        color: var(--text-tertiary);
+        text-decoration: none;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: var(--signal-primary);
+        }
+    }
+}
+
+.copyright {
+    color: var(--text-tertiary);
+    font-size: 0.75rem;
+    text-align: right;
+}

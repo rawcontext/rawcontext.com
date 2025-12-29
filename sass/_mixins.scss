@@ -1,0 +1,93 @@
+// ============================================
+// Mixins & Sass Utilities
+// ============================================
+
+// --------------------------------------------
+// Gradient Text
+// --------------------------------------------
+@mixin gradient-text($angle: 135deg, $start: #4da8c7, $end: #c9a655) {
+    background: linear-gradient($angle, $start 0%, $end 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// --------------------------------------------
+// Uppercase Label (nav, footer, section labels)
+// --------------------------------------------
+@mixin uppercase-label($size: 0.8125rem, $weight: 600, $spacing: 0.05em) {
+    font-size: $size;
+    font-weight: $weight;
+    letter-spacing: $spacing;
+    text-transform: uppercase;
+}
+
+// --------------------------------------------
+// Neuron Gradient (for brain animation neurons)
+// --------------------------------------------
+@mixin neuron-gradient($color, $glow-intensity: 0.5) {
+    background: radial-gradient(circle at 30% 30%,
+        $color 0%,
+        rgba($color, 0.6) 50%,
+        rgba($color, 0.2) 100%
+    );
+    box-shadow: 0 0 12px rgba($color, $glow-intensity);
+}
+
+// --------------------------------------------
+// Responsive Breakpoints
+// --------------------------------------------
+@mixin media-lg {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin media-md {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin media-sm {
+    @media (max-width: 480px) {
+        @content;
+    }
+}
+
+// --------------------------------------------
+// Animation Delay Generator
+// --------------------------------------------
+@mixin animation-delays($prefix, $delays, $property: 'animation-delay') {
+    @for $i from 1 through length($delays) {
+        &.#{$prefix}#{$i}::before {
+            #{$property}: nth($delays, $i);
+        }
+    }
+}
+
+// --------------------------------------------
+// Node Positions from Map
+// --------------------------------------------
+@mixin node-positions($positions) {
+    @each $node, $pos in $positions {
+        &.#{$node} {
+            top: map-get($pos, top);
+            left: map-get($pos, left);
+        }
+    }
+}
+
+// --------------------------------------------
+// Cluster Animation
+// --------------------------------------------
+@mixin cluster-animation($highlight-name, $duration, $delay) {
+    animation: nodeFloat 4s ease-in-out infinite, #{$highlight-name} $duration ease-out $delay infinite;
+}
+
+// --------------------------------------------
+// Edge Animation
+// --------------------------------------------
+@mixin edge-animation($pulse-name, $duration, $delay) {
+    animation: #{$pulse-name} $duration ease-in-out $delay infinite;
+}

@@ -1,0 +1,186 @@
+// Project Detail Page Styles
+
+.project-detail {
+    padding: var(--space-2xl) 0 var(--space-xl);
+    min-height: 100vh;
+}
+
+.project-header {
+    margin-bottom: var(--space-xl);
+    max-width: 800px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    margin-bottom: var(--space-md);
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: var(--signal-primary);
+
+        svg {
+            transform: translateX(-4px);
+        }
+    }
+
+    svg {
+        transition: transform 0.3s ease;
+    }
+}
+
+.project-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    margin-bottom: var(--space-sm);
+    @include gradient-text();
+}
+
+.project-status {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 0.5rem 1rem;
+    margin-bottom: var(--space-md);
+
+    &.available {
+        background: rgba(0, 212, 255, 0.1);
+        color: var(--signal-primary);
+        border: 1px solid rgba(0, 212, 255, 0.3);
+    }
+
+    &.coming-soon {
+        background: rgba(255, 200, 87, 0.1);
+        color: var(--signal-secondary);
+        border: 1px solid rgba(255, 200, 87, 0.3);
+    }
+}
+
+.project-description {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+}
+
+.project-github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--signal-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--signal-primary);
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: var(--signal-primary);
+        color: var(--void);
+    }
+}
+
+.project-content {
+    max-width: 800px;
+
+    h2 {
+        font-size: 1.75rem;
+        margin-top: var(--space-lg);
+        margin-bottom: var(--space-md);
+        color: var(--text-primary);
+        padding-bottom: var(--space-xs);
+        border-bottom: 1px solid var(--void-border);
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        margin-top: var(--space-md);
+        margin-bottom: var(--space-sm);
+        color: var(--signal-primary);
+    }
+
+    p {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: var(--space-sm);
+    }
+
+    ul,
+    ol {
+        color: var(--text-secondary);
+        margin-bottom: var(--space-md);
+        padding-left: var(--space-md);
+
+        li {
+            margin-bottom: var(--space-xs);
+            line-height: 1.7;
+        }
+    }
+
+    code {
+        font-family: 'Ubuntu Mono', monospace;
+        background: var(--void-elevated);
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 0.9em;
+        color: var(--signal-primary);
+    }
+
+    pre {
+        background: var(--void-elevated);
+        border: 1px solid var(--void-border);
+        padding: var(--space-md);
+        overflow-x: auto;
+        margin-bottom: var(--space-md);
+
+        code {
+            background: none;
+            padding: 0;
+            color: var(--text-primary);
+        }
+    }
+
+    strong {
+        color: var(--text-primary);
+        font-weight: 700;
+    }
+
+    a {
+        color: var(--signal-primary);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease;
+
+        &:hover {
+            border-bottom-color: var(--signal-primary);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .project-detail {
+        padding: var(--space-xl) 0;
+    }
+
+    .project-title {
+        font-size: 2.5rem;
+    }
+
+    .project-content {
+        h2 {
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.125rem;
+        }
+    }
+}

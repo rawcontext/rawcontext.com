@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block content %}
+{% include "partials/header.html" %}
+
+<main>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-layout">
+                <div class="hero-content">
+                    <p class="hero-eyebrow">{{ section.extra.eyebrow }}</p>
+                    <h1><span class="gradient-text">{{ section.extra.headline }}</span></h1>
+                    <p class="hero-tagline">{{ section.extra.tagline }}</p>
+                </div>
+                <div class="hero-visual">
+                    {% include "partials/orrery.html" %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <p class="section-label">{{ section.extra.section_label }}</p>
+                    <h2 class="section-title">{{ section.extra.section_title }}</h2>
+                </div>
+                <p class="section-description">{{ section.extra.section_description }}</p>
+            </div>
+
+            <div class="services-grid">
+                {% set projects = get_section(path="projects/_index.md") %}
+                {% for project in projects.pages %}
+                {{ macros::service_card(project=project, index=loop.index, as_link=true) }}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include "partials/footer.html" %}
+{% endblock %}

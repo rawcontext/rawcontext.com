@@ -1,0 +1,282 @@
+<div class="project-visual engram-project-visual">
+    <div class="neural-engram">
+
+        <!-- Ambient neural field (neurotransmitters) -->
+        <div class="neural-field">
+            <div class="vesicle"></div>
+            <div class="vesicle"></div>
+            <div class="vesicle"></div>
+            <div class="vesicle"></div>
+            <div class="vesicle"></div>
+            <div class="vesicle"></div>
+            <div class="vesicle"></div>
+            <div class="vesicle"></div>
+        </div>
+
+        <!-- Tech grid overlay -->
+        <div class="tech-grid"></div>
+
+        <!-- Human brain silhouette (side view) -->
+        <svg class="brain-silhouette" viewBox="0 0 380 380">
+            <!-- Background glow layer for depth -->
+            <defs>
+                <filter id="brainGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                <filter id="brainGlowStrong" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="8" result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                <linearGradient id="brainStrokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.9"/>
+                    <stop offset="50%" stop-color="#00a8cc" stop-opacity="0.7"/>
+                    <stop offset="100%" stop-color="#00d4ff" stop-opacity="0.9"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Outer glow layer -->
+            <path class="brain-outline-glow" d="
+                M 70 235
+                C 58 218, 48 195, 45 170
+                C 42 145, 48 118, 52 100
+                C 48 82, 52 60, 68 42
+                C 88 22, 118 12, 155 18
+                C 175 20, 190 18, 210 22
+                C 240 28, 268 42, 295 65
+                C 322 88, 342 118, 352 155
+                C 360 185, 358 215, 348 242
+                C 338 268, 318 288, 290 298
+                C 262 308, 230 310, 200 305
+                C 170 300, 145 288, 125 272
+                C 105 256, 82 252, 70 235
+                Z
+            "/>
+
+            <!-- Main brain outline - anatomical side profile -->
+            <path class="brain-outline" d="
+                M 70 235
+                C 62 222, 55 205, 50 185
+                C 46 165, 48 145, 52 125
+                C 55 110, 52 95, 50 80
+                C 48 65, 55 48, 72 35
+                C 92 20, 120 15, 150 18
+                C 165 19, 178 17, 195 20
+                C 215 23, 235 30, 255 42
+                C 278 56, 300 75, 318 98
+                C 336 121, 348 148, 354 178
+                C 358 200, 356 222, 348 242
+                C 340 262, 325 280, 305 292
+                C 285 304, 260 310, 235 310
+                C 210 310, 185 305, 162 295
+                C 140 285, 120 272, 105 258
+                C 90 244, 78 248, 70 235
+                Z
+            "/>
+
+            <!-- Secondary outline for depth - follows brain contours -->
+            <path class="brain-outline-inner" d="
+                M 78 230
+                C 68 212, 62 190, 60 168
+                C 58 146, 62 124, 66 108
+                C 64 92, 68 72, 82 55
+                C 100 36, 125 28, 155 30
+                C 175 31, 192 28, 212 32
+                C 238 38, 262 52, 285 72
+                C 308 92, 326 118, 338 148
+                C 348 175, 350 202, 342 228
+                C 334 252, 318 272, 295 285
+                C 272 298, 245 302, 218 300
+                C 192 298, 168 290, 148 278
+                C 128 266, 110 252, 95 240
+                C 86 232, 82 238, 78 230
+                Z
+            "/>
+
+
+
+            <!-- Detailed gyri (brain folds) - creating recognizable brain texture -->
+            <!-- Frontal gyri (front of brain - forehead area) -->
+            <path class="gyrus" d="M 62 65 Q 90 50, 125 55 Q 155 48, 180 55"/>
+            <path class="gyrus" d="M 55 90 Q 88 75, 130 82 Q 168 72, 200 85"/>
+            <path class="gyrus" d="M 52 118 Q 90 102, 140 110 Q 185 98, 225 112"/>
+
+            <!-- Parietal gyri (top of brain) -->
+            <path class="gyrus" d="M 195 38 Q 235 32, 270 48 Q 300 62, 325 85"/>
+            <path class="gyrus" d="M 215 62 Q 255 52, 290 72 Q 318 90, 338 115"/>
+            <path class="gyrus" d="M 230 95 Q 275 82, 310 105 Q 338 128, 350 158"/>
+
+            <!-- Temporal gyri (side/bottom of brain) -->
+            <path class="gyrus" d="M 55 155 Q 90 145, 130 152 Q 168 142, 200 155"/>
+            <path class="gyrus" d="M 58 185 Q 100 172, 145 182 Q 190 170, 230 185"/>
+            <path class="gyrus" d="M 72 220 Q 120 205, 170 215 Q 218 205, 260 222"/>
+
+            <!-- Occipital gyri (back of brain) -->
+            <path class="gyrus" d="M 350 185 Q 335 200, 308 208 Q 285 218, 265 235"/>
+            <path class="gyrus" d="M 342 225 Q 322 242, 295 252 Q 268 265, 242 278"/>
+
+            <!-- Central sulcus (major divide between frontal and parietal) -->
+            <path class="sulcus-major" d="M 195 35 Q 188 85, 178 135 Q 168 185, 155 235"/>
+
+            <!-- Lateral fissure (Sylvian fissure - separates temporal lobe) -->
+            <path class="sulcus-major" d="M 55 160 Q 105 148, 160 158 Q 215 165, 265 188"/>
+
+            <!-- Circuit board traces -->
+            <g class="circuit-layer">
+                <!-- Input circuits (left side) -->
+                <path class="circuit-trace ct-1" d="M 25 190 L 50 190 L 50 165 L 70 165"/>
+                <path class="circuit-trace ct-2" d="M 25 220 L 45 220 L 45 245 L 75 245"/>
+
+                <!-- Output circuits (right side) -->
+                <path class="circuit-trace ct-3" d="M 345 150 L 365 150 L 365 120 L 355 120"/>
+                <path class="circuit-trace ct-4" d="M 340 220 L 360 220 L 360 250 L 355 250"/>
+
+                <!-- Top circuits -->
+                <path class="circuit-trace ct-5" d="M 190 10 L 190 25"/>
+                <path class="circuit-trace ct-6" d="M 260 20 L 260 40"/>
+
+
+                <!-- Circuit nodes -->
+                <circle class="circuit-node cn-1" cx="25" cy="190" r="4"/>
+                <circle class="circuit-node cn-2" cx="25" cy="220" r="4"/>
+                <circle class="circuit-node cn-3" cx="365" cy="150" r="4"/>
+                <circle class="circuit-node cn-4" cx="360" cy="250" r="4"/>
+                <circle class="circuit-node cn-5" cx="190" cy="10" r="3"/>
+                <circle class="circuit-node cn-6" cx="260" cy="20" r="3"/>
+            </g>
+
+            <!-- Data flow pulses -->
+            <circle class="data-pulse dp-1" cx="25" cy="190" r="2"/>
+            <circle class="data-pulse dp-2" cx="365" cy="150" r="2"/>
+            <circle class="data-pulse dp-3" cx="190" cy="10" r="2"/>
+        </svg>
+
+        <!-- Scan line effect -->
+        <div class="scan-line"></div>
+
+        <!-- Synaptic connections -->
+        <svg class="synaptic-network" viewBox="0 0 380 380">
+            <!-- Frontal region connections -->
+            <line class="synapse synapse-sensory" x1="90" y1="85" x2="120" y2="105"/>
+            <line class="synapse synapse-motor" x1="120" y1="105" x2="100" y2="140"/>
+            <line class="synapse synapse-sensory" x1="100" y1="140" x2="130" y2="175"/>
+            <line class="synapse synapse-inter" x1="75" y1="125" x2="100" y2="140"/>
+
+            <!-- Frontal to Hippocampus (center) -->
+            <line class="synapse synapse-memory" x1="120" y1="105" x2="175" y2="150"/>
+            <line class="synapse synapse-memory" x1="130" y1="175" x2="180" y2="185"/>
+
+            <!-- Hippocampus internal (dense memory center) -->
+            <line class="synapse synapse-memory" x1="175" y1="150" x2="200" y2="145"/>
+            <line class="synapse synapse-memory" x1="200" y1="145" x2="225" y2="155"/>
+            <line class="synapse synapse-memory" x1="175" y1="150" x2="185" y2="175"/>
+            <line class="synapse synapse-memory" x1="185" y1="175" x2="210" y2="170"/>
+            <line class="synapse synapse-memory" x1="210" y1="170" x2="225" y2="155"/>
+            <line class="synapse synapse-memory" x1="185" y1="175" x2="200" y2="195"/>
+            <line class="synapse synapse-memory" x1="180" y1="185" x2="200" y2="195"/>
+            <line class="synapse synapse-memory" x1="200" y1="195" x2="230" y2="185"/>
+            <line class="synapse synapse-memory" x1="210" y1="170" x2="230" y2="185"/>
+            <line class="synapse synapse-memory" x1="225" y1="155" x2="250" y2="165"/>
+            <line class="synapse synapse-memory" x1="230" y1="185" x2="250" y2="165"/>
+
+            <!-- To Parietal region -->
+            <line class="synapse synapse-sensory" x1="225" y1="155" x2="275" y2="110"/>
+            <line class="synapse synapse-motor" x1="250" y1="165" x2="300" y2="130"/>
+
+            <!-- Parietal connections -->
+            <line class="synapse synapse-sensory" x1="275" y1="110" x2="305" y2="85"/>
+            <line class="synapse synapse-motor" x1="305" y1="85" x2="320" y2="115"/>
+            <line class="synapse synapse-sensory" x1="300" y1="130" x2="320" y2="115"/>
+            <line class="synapse synapse-inter" x1="320" y1="115" x2="310" y2="155"/>
+
+            <!-- Temporal connections -->
+            <line class="synapse synapse-motor" x1="130" y1="175" x2="155" y2="220"/>
+            <line class="synapse synapse-sensory" x1="155" y1="220" x2="190" y2="240"/>
+            <line class="synapse synapse-motor" x1="190" y1="240" x2="230" y2="235"/>
+            <line class="synapse synapse-inter" x1="200" y1="195" x2="190" y2="240"/>
+            <line class="synapse synapse-sensory" x1="230" y1="235" x2="270" y2="220"/>
+
+            <!-- Cross-region connections -->
+            <line class="synapse synapse-inter" x1="90" y1="85" x2="200" y2="145"/>
+            <line class="synapse synapse-inter" x1="230" y1="185" x2="270" y2="220"/>
+        </svg>
+
+        <!-- Neuron nodes -->
+        <div class="neuron-field">
+            <!-- Frontal region (left) -->
+            <div class="neuron neuron-heavy neuron-sensory n1 pulse-1"></div>
+            <div class="neuron neuron-medium neuron-motor n2 pulse-4"></div>
+            <div class="neuron neuron-medium neuron-sensory n3 pulse-2"></div>
+            <div class="neuron neuron-light neuron-inter n4 pulse-6"></div>
+            <div class="neuron neuron-light neuron-motor n5 pulse-3"></div>
+
+            <!-- Hippocampus region (center) - Memory formation -->
+            <div class="neuron neuron-heavy neuron-memory n6 pulse-1"></div>
+            <div class="neuron neuron-heavy neuron-memory n7 pulse-3"></div>
+            <div class="neuron neuron-heavy neuron-memory n8 pulse-5"></div>
+            <div class="neuron neuron-medium neuron-memory n9 pulse-2"></div>
+            <div class="neuron neuron-medium neuron-memory n10 pulse-4"></div>
+            <div class="neuron neuron-medium neuron-memory n11 pulse-6"></div>
+            <div class="neuron neuron-medium neuron-memory n12 pulse-8"></div>
+            <div class="neuron neuron-light neuron-memory n13 pulse-7"></div>
+            <div class="neuron neuron-light neuron-memory n14 pulse-1"></div>
+
+            <!-- Parietal region (top-right) -->
+            <div class="neuron neuron-heavy neuron-sensory n15 pulse-2"></div>
+            <div class="neuron neuron-medium neuron-motor n16 pulse-5"></div>
+            <div class="neuron neuron-medium neuron-sensory n17 pulse-3"></div>
+            <div class="neuron neuron-light neuron-inter n18 pulse-8"></div>
+            <div class="neuron neuron-light neuron-sensory n19 pulse-4"></div>
+
+            <!-- Temporal region (bottom) -->
+            <div class="neuron neuron-medium neuron-motor n20 pulse-7"></div>
+            <div class="neuron neuron-medium neuron-sensory n21 pulse-1"></div>
+            <div class="neuron neuron-light neuron-motor n22 pulse-5"></div>
+            <div class="neuron neuron-light neuron-sensory n23 pulse-2"></div>
+
+            <!-- Occipital region (back) -->
+            <div class="neuron neuron-light neuron-sensory n24 pulse-6"></div>
+            <div class="neuron neuron-trace neuron-inter n25 pulse-3"></div>
+
+        </div>
+
+        <!-- Hippocampus core (memory center) -->
+        <div class="hippocampus-core">
+            <div class="core-glow"></div>
+            <div class="core-pulse"></div>
+            <div class="core-inner"></div>
+        </div>
+
+        <!-- Neural firing impulses -->
+        <div class="neural-impulses">
+            <div class="impulse impulse-1"><div class="impulse-particle"></div></div>
+            <div class="impulse impulse-2"><div class="impulse-particle"></div></div>
+            <div class="impulse impulse-3"><div class="impulse-particle"></div></div>
+            <div class="impulse impulse-4"><div class="impulse-particle"></div></div>
+            <div class="impulse impulse-5"><div class="impulse-particle"></div></div>
+            <div class="impulse impulse-6"><div class="impulse-particle"></div></div>
+        </div>
+
+        <!-- Engram formation crystals -->
+        <div class="engram-formation">
+            <div class="engram engram-1"></div>
+            <div class="engram engram-2"></div>
+            <div class="engram engram-3"></div>
+        </div>
+
+        <!-- Interface labels -->
+        <div class="interface-labels">
+            <div class="label label-memory">MEMORY</div>
+            <div class="label label-input">IN</div>
+            <div class="label label-output">OUT</div>
+        </div>
+
+    </div>
+</div>

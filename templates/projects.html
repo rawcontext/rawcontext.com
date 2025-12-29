@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}Projects - {{ config.title }}{% endblock %}
+
+{% block content %}
+{% include "partials/header.html" %}
+
+<main>
+    <section class="services" style="padding-top: var(--space-2xl);">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <p class="section-label">What We Build</p>
+                    <h2 class="section-title">Projects</h2>
+                </div>
+                <p class="section-description">Open-source tools designed for the unique demands of autonomous AI systems.</p>
+            </div>
+
+            <div class="services-grid">
+                {% for page in section.pages %}
+                {{ macros::service_card(project=page, index=loop.index, as_link=false) }}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include "partials/footer.html" %}
+{% endblock %}

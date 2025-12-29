@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ config.title }}{% endblock %}</title>
+    <meta name="description" content="{{ config.description }}">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/main.css">
+    <script>
+        // Font loading detection
+        if (document.fonts) {
+            document.fonts.ready.then(function() {
+                document.documentElement.classList.add('fonts-loaded');
+            }).catch(function() {
+                document.documentElement.classList.add('fonts-failed');
+            });
+            // Fallback timeout
+            setTimeout(function() {
+                if (!document.documentElement.classList.contains('fonts-loaded')) {
+                    document.documentElement.classList.add('fonts-failed');
+                }
+            }, 3000);
+        } else {
+            // Browser doesn't support font loading API
+            document.documentElement.classList.add('fonts-loaded');
+        }
+    </script>
+</head>
+<body>
+    <div class="constellation-grid">
+        <div class="grid-lines"></div>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <script>
+        // Generate constellation nodes
+        const grid = document.querySelector('.constellation-grid');
+        const nodeCount = 20;
+
+        for (let i = 0; i < nodeCount; i++) {
+            const node = document.createElement('div');
+            node.className = 'constellation-node';
+            node.style.left = Math.random() * 100 + '%';
+            node.style.top = Math.random() * 100 + '%';
+            node.style.animationDelay = `${Math.random() * 2}s, ${Math.random() * 4}s`;
+            grid.appendChild(node);
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -10% 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+
+            // Track mouse position for glow effect
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+
+        // Solar system mouse interaction
+        const solarSystem = document.getElementById('solar-system');
+        if (solarSystem) {
+            const heroVisual = solarSystem.parentElement;
+
+            heroVisual.addEventListener('mousemove', (e) => {
+                const rect = heroVisual.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                const deltaX = (e.clientX - centerX) / rect.width;
+                const deltaY = (e.clientY - centerY) / rect.height;
+
+                // Tilt the entire solar system based on mouse position
+                const tiltX = deltaY * 15;
+                const tiltY = deltaX * -15;
+
+                solarSystem.style.transform = `translate(-50%, -50%) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            });
+
+            heroVisual.addEventListener('mouseleave', () => {
+                solarSystem.style.transform = 'translate(-50%, -50%) rotateX(0deg) rotateY(0deg)';
+            });
+        }
+    </script>
+</body>
+</html>
