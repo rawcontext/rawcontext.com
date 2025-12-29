@@ -1,6 +1,6 @@
-# rawcontext.com
+#  `Context` (rawcontext.com)
 
-Marketing site for Raw Context — open-source tools for autonomous AI systems.
+Marketing site for Context — open-source tools for autonomous AI systems.
 
 ## Stack
 
