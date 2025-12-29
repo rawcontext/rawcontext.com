@@ -1,0 +1,73 @@
+// Prose content styling for pages
+
+.page-content {
+    padding: var(--space-xl) 0 var(--space-2xl);
+}
+
+.prose {
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.8;
+
+    h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: var(--text-primary);
+        margin-bottom: var(--space-md);
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        color: var(--text-primary);
+        margin-top: var(--space-lg);
+        margin-bottom: var(--space-sm);
+    }
+
+    h3 {
+        font-size: 1.25rem;
+        color: var(--text-primary);
+        margin-top: var(--space-md);
+        margin-bottom: var(--space-xs);
+    }
+
+    p {
+        margin-bottom: var(--space-sm);
+    }
+
+    ul, ol {
+        margin-bottom: var(--space-sm);
+        padding-left: var(--space-md);
+    }
+
+    li {
+        margin-bottom: var(--space-xs);
+    }
+
+    strong {
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    a {
+        color: var(--signal-primary);
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid var(--void-border);
+        margin: var(--space-lg) 0;
+    }
+
+    em {
+        font-style: italic;
+        color: var(--text-tertiary);
+    }
+}
