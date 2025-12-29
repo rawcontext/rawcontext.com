@@ -45,7 +45,7 @@ You have the right to:
 - **Deletion**: Request deletion of your personal data
 - **Opt-out**: Unsubscribe from marketing communications at any time
 
-To exercise any of these rights, please contact us at privacy@rawcontext.com.
+To exercise any of these rights, please contact us at chris@cheney.dev.
 
 ## Cookies
 
@@ -63,4 +63,4 @@ We may update this Privacy Policy from time to time. We will notify you of any m
 
 If you have questions about this Privacy Policy or our data practices, please contact us at:
 
-**Email**: privacy@rawcontext.com
+**Email**: chris@cheney.dev
