@@ -27,6 +27,15 @@
         padding: var(--space-xl) 0;
     }
 
+    .waitlist-input-group {
+        flex-direction: column;
+        max-width: 100%;
+
+        button {
+            width: 100%;
+        }
+    }
+
     .services {
         padding: var(--space-lg) 0;
     }

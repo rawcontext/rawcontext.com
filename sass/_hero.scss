@@ -59,6 +59,155 @@
     animation: slideReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
 }
 
+// Waitlist Form
+.waitlist-form {
+    margin-top: var(--space-md);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+}
+
+.waitlist-input-group {
+    display: flex;
+    gap: var(--space-xs);
+    max-width: 420px;
+
+    input[type="email"] {
+        flex: 1;
+        padding: 0.875rem 1rem;
+        background: var(--void-elevated);
+        border: 1px solid var(--void-border);
+        border-radius: var(--radius-md);
+        color: var(--text-primary);
+        font-size: 0.9375rem;
+        font-family: inherit;
+        transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+
+        &::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--signal-primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+        }
+    }
+
+    button {
+        padding: 0.875rem 1.5rem;
+        background: var(--signal-primary);
+        border: none;
+        border-radius: var(--radius-md);
+        color: var(--void);
+        font-size: 0.875rem;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: transform var(--duration-fast), box-shadow var(--duration-fast), background var(--duration-fast);
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-primary);
+        }
+
+        &:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .btn-text {
+            transition: opacity var(--duration-fast);
+        }
+
+        .btn-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--duration-fast);
+
+            svg {
+                width: 20px;
+                height: 20px;
+                animation: spin 1s linear infinite;
+            }
+        }
+
+        &.loading {
+            .btn-text {
+                opacity: 0;
+            }
+            .btn-loading {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.waitlist-message {
+    margin-top: var(--space-sm);
+    font-size: 0.875rem;
+    min-height: 1.25rem;
+    transition: opacity var(--duration-fast);
+
+    &.success {
+        color: #4ade80;
+    }
+
+    &.error {
+        color: #f87171;
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+// Standalone waitlist section (for non-hero pages)
+.waitlist-section {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--void-border);
+}
+
+.waitlist-cta {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+
+    h3 {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-xs);
+        color: var(--text-primary);
+    }
+
+    > p {
+        color: var(--text-secondary);
+        margin-bottom: var(--space-md);
+    }
+
+    .waitlist-form {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    .waitlist-input-group {
+        max-width: 100%;
+        justify-content: center;
+    }
+}
+
 .hero-visual {
     position: relative;
     height: 500px;

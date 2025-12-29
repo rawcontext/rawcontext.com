@@ -12,6 +12,21 @@
                     <p class="hero-eyebrow">{{ section.extra.eyebrow }}</p>
                     <h1><span class="gradient-text">{{ section.extra.headline }}</span></h1>
                     <p class="hero-tagline">{{ section.extra.tagline }}</p>
+
+                    <form class="waitlist-form" id="waitlist-form">
+                        <div class="waitlist-input-group">
+                            <input type="email" name="email" placeholder="Enter your email" required autocomplete="email">
+                            <button type="submit">
+                                <span class="btn-text">Join Waitlist</span>
+                                <span class="btn-loading">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="10" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                        <p class="waitlist-message"></p>
+                    </form>
                 </div>
                 <div class="hero-visual">
                     {% include "partials/orrery.html" %}
