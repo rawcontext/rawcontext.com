@@ -5,23 +5,17 @@ template = "page.html"
 
 # Privacy Policy
 
-**Last Updated: December 29, 2025**
-
 Context ("we," "our," or "us") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information when you use our website and services.
 
 ## Our Core Promise
 
-**We will never sell or share your personal data with third parties for marketing purposes.** Your data is yours, and we only use it to provide and improve our services.
+**We do not collect analytics, track your behavior, or share your data with third parties.** Your data is yours.
 
 ## Information We Collect
 
 ### Information You Provide
 - **Email Address**: When you join our waitlist, we collect your email address to send you updates about our products and services.
 - **Account Information**: If you create an account, we collect the information necessary to maintain your account.
-
-### Information Collected Automatically
-- **Usage Data**: We may collect information about how you interact with our services, including pages visited and features used.
-- **Device Information**: We may collect basic device information such as browser type and operating system for compatibility purposes.
 
 ## How We Use Your Information
 
@@ -53,10 +47,6 @@ You have the right to:
 
 To exercise any of these rights, please contact us at privacy@rawcontext.com.
 
-## Third-Party Services
-
-We may use third-party services to help us operate our business. These services are bound by their own privacy policies and we only share the minimum data necessary for them to perform their functions.
-
 ## Cookies
 
 We use essential cookies to ensure our website functions properly. We do not use tracking cookies for advertising purposes.
@@ -74,7 +64,3 @@ We may update this Privacy Policy from time to time. We will notify you of any m
 If you have questions about this Privacy Policy or our data practices, please contact us at:
 
 **Email**: privacy@rawcontext.com
-
----
-
-*This policy is effective as of December 29, 2025.*
