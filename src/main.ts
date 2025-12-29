@@ -66,37 +66,66 @@ function initScrollAnimations(): void {
   });
 }
 
-// Turnstile token storage
-let turnstileToken: string | null = null;
-
-// Global callback for Turnstile
-(window as unknown as { onTurnstileVerify: (token: string) => void }).onTurnstileVerify = (token: string) => {
-  turnstileToken = token;
-};
+// Turnstile types
+declare const turnstile: {
+  render: (container: string | HTMLElement, options: {
+    sitekey: string;
+    execution?: 'render' | 'execute';
+    appearance?: 'always' | 'execute' | 'interaction-only';
+    callback?: (token: string) => void;
+    'error-callback'?: () => void;
+  }) => string;
+  execute: (container: string | HTMLElement) => void;
+  reset: (widgetId?: string) => void;
+  getResponse: (widgetId?: string) => string | undefined;
+} | undefined;
 
 // Waitlist form submission
 function initWaitlistForm(): void {
   const waitlistForm = document.getElementById('waitlist-form') as HTMLFormElement | null;
   if (!waitlistForm) return;
 
-  waitlistForm.addEventListener('submit', async (e: Event) => {
-    e.preventDefault();
+  const button = waitlistForm.querySelector('button') as HTMLButtonElement;
+  const message = waitlistForm.querySelector('.waitlist-message') as HTMLParagraphElement;
+  const emailInput = waitlistForm.querySelector('input[name="email"]') as HTMLInputElement;
 
-    const button = waitlistForm.querySelector('button') as HTMLButtonElement;
-    const message = waitlistForm.querySelector('.waitlist-message') as HTMLParagraphElement;
-    const emailInput = waitlistForm.querySelector('input[name="email"]') as HTMLInputElement;
-    const email = emailInput.value;
+  // Create container for Turnstile
+  const turnstileContainer = document.createElement('div');
+  turnstileContainer.id = 'turnstile-container';
+  waitlistForm.appendChild(turnstileContainer);
 
-    if (!turnstileToken) {
-      message.className = 'waitlist-message error';
-      message.textContent = 'Please complete the verification.';
+  let widgetId: string | null = null;
+  let pendingSubmit = false;
+
+  // Render Turnstile when API is ready
+  const renderTurnstile = () => {
+    if (typeof turnstile === 'undefined') {
+      setTimeout(renderTurnstile, 100);
       return;
     }
+    widgetId = turnstile.render('#turnstile-container', {
+      sitekey: '0x4AAAAAACJhYfFcaH1IGN1W',
+      execution: 'execute',
+      appearance: 'interaction-only',
+      callback: (token: string) => {
+        if (pendingSubmit) {
+          pendingSubmit = false;
+          submitForm(token);
+        }
+      },
+      'error-callback': () => {
+        pendingSubmit = false;
+        button.classList.remove('loading');
+        button.disabled = false;
+        message.className = 'waitlist-message error';
+        message.textContent = 'Verification failed. Try again.';
+      },
+    });
+  };
+  renderTurnstile();
 
-    button.classList.add('loading');
-    button.disabled = true;
-    message.className = 'waitlist-message';
-    message.textContent = '';
+  const submitForm = async (turnstileToken: string) => {
+    const email = emailInput.value;
 
     try {
       const res = await fetch('/api/waitlist', {
@@ -111,11 +140,6 @@ function initWaitlistForm(): void {
         message.className = 'waitlist-message success';
         message.textContent = "You're on the list. We'll be in touch.";
         emailInput.value = '';
-        // Reset Turnstile for next submission
-        turnstileToken = null;
-        if (typeof turnstile !== 'undefined') {
-          turnstile.reset();
-        }
       } else {
         message.className = 'waitlist-message error';
         message.textContent = data.error || 'Something went wrong. Try again.';
@@ -126,12 +150,30 @@ function initWaitlistForm(): void {
     } finally {
       button.classList.remove('loading');
       button.disabled = false;
+      if (typeof turnstile !== 'undefined') {
+        turnstile.reset(widgetId ?? undefined);
+      }
     }
+  };
+
+  waitlistForm.addEventListener('submit', (e: Event) => {
+    e.preventDefault();
+
+    if (typeof turnstile === 'undefined') {
+      message.className = 'waitlist-message error';
+      message.textContent = 'Please wait for page to load.';
+      return;
+    }
+
+    button.classList.add('loading');
+    button.disabled = true;
+    message.className = 'waitlist-message';
+    message.textContent = '';
+
+    pendingSubmit = true;
+    turnstile.execute('#turnstile-container');
   });
 }
-
-// Declare turnstile global
-declare const turnstile: { reset: () => void } | undefined;
 
 // Solar system mouse interaction
 function initSolarSystem(): void {
