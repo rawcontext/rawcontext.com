@@ -6,6 +6,12 @@ export const config = {
 
 interface WaitlistRequest {
   email: string;
+  turnstileToken: string;
+}
+
+interface TurnstileResponse {
+  success: boolean;
+  'error-codes'?: string[];
 }
 
 interface Metadata {
@@ -30,10 +36,37 @@ export default async function handler(req: Request): Promise<Response> {
 
   try {
     const body = (await req.json()) as WaitlistRequest;
-    const { email } = body;
+    const { email, turnstileToken } = body;
 
     if (!email || !isValidEmail(email)) {
       return new Response(JSON.stringify({ error: 'Valid email required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    if (!turnstileToken) {
+      return new Response(JSON.stringify({ error: 'Verification required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Verify Turnstile token
+    const turnstileRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: process.env.TURNSTILE_SECRET_KEY!,
+        response: turnstileToken,
+        remoteip: req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? '',
+      }),
+    });
+
+    const turnstileData = (await turnstileRes.json()) as TurnstileResponse;
+
+    if (!turnstileData.success) {
+      return new Response(JSON.stringify({ error: 'Verification failed' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
       });

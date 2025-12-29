@@ -66,6 +66,14 @@ function initScrollAnimations(): void {
   });
 }
 
+// Turnstile token storage
+let turnstileToken: string | null = null;
+
+// Global callback for Turnstile
+(window as unknown as { onTurnstileVerify: (token: string) => void }).onTurnstileVerify = (token: string) => {
+  turnstileToken = token;
+};
+
 // Waitlist form submission
 function initWaitlistForm(): void {
   const waitlistForm = document.getElementById('waitlist-form') as HTMLFormElement | null;
@@ -79,6 +87,12 @@ function initWaitlistForm(): void {
     const emailInput = waitlistForm.querySelector('input[name="email"]') as HTMLInputElement;
     const email = emailInput.value;
 
+    if (!turnstileToken) {
+      message.className = 'waitlist-message error';
+      message.textContent = 'Please complete the verification.';
+      return;
+    }
+
     button.classList.add('loading');
     button.disabled = true;
     message.className = 'waitlist-message';
@@ -88,7 +102,7 @@ function initWaitlistForm(): void {
       const res = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, turnstileToken }),
       });
 
       const data = await res.json();
@@ -97,6 +111,11 @@ function initWaitlistForm(): void {
         message.className = 'waitlist-message success';
         message.textContent = "You're on the list. We'll be in touch.";
         emailInput.value = '';
+        // Reset Turnstile for next submission
+        turnstileToken = null;
+        if (typeof turnstile !== 'undefined') {
+          turnstile.reset();
+        }
       } else {
         message.className = 'waitlist-message error';
         message.textContent = data.error || 'Something went wrong. Try again.';
@@ -110,6 +129,9 @@ function initWaitlistForm(): void {
     }
   });
 }
+
+// Declare turnstile global
+declare const turnstile: { reset: () => void } | undefined;
 
 // Solar system mouse interaction
 function initSolarSystem(): void {
