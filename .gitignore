@@ -4,3 +4,4 @@ public/
 docs/
 .playwright-mcp/
 .vercel
+.env*
