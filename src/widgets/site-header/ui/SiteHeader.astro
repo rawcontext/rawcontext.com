@@ -1,0 +1,79 @@
+---
+import { ContactEmail } from '@/features/contact-email';
+import { site } from '@/shared/config';
+import { GitHubIcon } from '@/shared/ui/github-icon';
+import { Mark } from '@/shared/ui/mark';
+---
+
+<header class="site-header">
+	<a class="brand" href="/">
+		<Mark size={24} class="brand__mark" />
+		<span class="brand__name">{site.name}</span>
+	</a>
+	<nav class="site-nav" aria-label="Site">
+		<ContactEmail email={site.contactEmail} label="Contact" class="site-nav__contact" />
+		<a
+			class="site-nav__github"
+			href={site.githubUrl}
+			target="_blank"
+			rel="noopener"
+			aria-label={`${site.name} on GitHub`}
+		>
+			<GitHubIcon size={22} />
+		</a>
+	</nav>
+</header>
+
+<style>
+	.site-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		block-size: var(--header-block);
+		padding-inline: var(--gutter);
+		border-block-end: var(--rule);
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 0.6875rem;
+		line-height: 1;
+		text-decoration: none;
+	}
+
+	.brand__mark {
+		position: relative;
+		inset-block-start: -2.5px;
+	}
+
+	.brand__name {
+		font-size: 1.375rem;
+		letter-spacing: -0.01em;
+	}
+
+	.site-nav {
+		display: flex;
+		align-items: center;
+		gap: 1.75rem;
+	}
+
+	/* The contact link is rendered by a React island, so it sits outside this
+	   component's scope; style it through its class instead. */
+	.site-nav :global(.site-nav__contact) {
+		font-size: var(--text-nav);
+		font-style: italic;
+		color: var(--color-fg-muted);
+		text-decoration: none;
+		transition: color var(--duration-color) ease;
+
+		&:hover {
+			color: var(--color-accent);
+		}
+	}
+
+	.site-nav__github {
+		display: flex;
+		align-items: center;
+	}
+</style>

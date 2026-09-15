@@ -1,0 +1,41 @@
+---
+import { WaitlistForm } from '@/features/join-waitlist';
+---
+
+<section class="waitlist" aria-labelledby="waitlist-title">
+	<div class="waitlist__copy">
+		<h2 id="waitlist-title" class="waitlist__title">Hear when something ships.</h2>
+		<p class="waitlist__body">
+			Leave an address and we'll write when there's something to use. No newsletter.
+		</p>
+	</div>
+	<WaitlistForm />
+</section>
+
+<style>
+	.waitlist {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+		gap: clamp(1.5rem, 4vw, 4.5rem);
+		align-items: center;
+		padding: var(--section-block) var(--gutter);
+		border-block-start: var(--rule);
+	}
+
+	.waitlist__copy {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.waitlist__title {
+		font-size: var(--text-title);
+	}
+
+	.waitlist__body {
+		max-inline-size: 30em;
+		font-size: var(--text-body);
+		line-height: 1.55;
+		color: var(--color-fg-body);
+	}
+</style>

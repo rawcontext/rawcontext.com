@@ -1,7 +1,8 @@
 .DS_Store
 node_modules/
-public/
-docs/
-.playwright-mcp/
-.vercel
+dist/
+.astro/
+.vercel/
 .env*
+.playwright-mcp/
+.claude/

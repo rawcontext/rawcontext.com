@@ -1,0 +1,57 @@
+---
+/**
+ * The one button style on the site: ink block, paper text, mono label.
+ * Renders an anchor when given `href`, otherwise a real button.
+ */
+interface Props {
+	href?: string;
+	type?: 'button' | 'submit' | 'reset';
+	class?: string;
+	target?: string;
+	rel?: string;
+	disabled?: boolean;
+}
+
+const { href, type = 'button', class: className, ...rest } = Astro.props;
+---
+
+{
+	href ? (
+		<a class:list={['button', className]} href={href} {...rest}>
+			<slot />
+		</a>
+	) : (
+		<button class:list={['button', className]} type={type} {...rest}>
+			<slot />
+		</button>
+	)
+}
+
+<style>
+	.button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.625rem;
+		padding: 0.9375rem 1.375rem;
+		border: 0;
+		background: var(--color-fg);
+		color: var(--color-bg);
+		font-family: var(--font-mono);
+		font-size: var(--text-button);
+		letter-spacing: var(--tracking-button);
+		line-height: 1.2;
+		text-decoration: none;
+		cursor: pointer;
+		transition: background-color var(--duration-color) ease;
+
+		&:hover {
+			background: var(--color-accent);
+			color: var(--color-bg);
+		}
+
+		&:disabled {
+			cursor: progress;
+			opacity: 0.6;
+		}
+	}
+</style>

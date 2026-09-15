@@ -1,0 +1,19 @@
+---
+/**
+ * Server half of the obfuscated contact link. Takes the plain address at
+ * build time, hands the island a reversed copy, and hydrates on load so the
+ * link works as soon as the page is interactive.
+ */
+import { flip } from '../model/obfuscation';
+import { ContactLink } from './ContactLink';
+
+interface Props {
+	email: string;
+	label?: string;
+	class?: string;
+}
+
+const { email, label, class: className } = Astro.props;
+---
+
+<ContactLink client:load reversed={flip(email)} label={label} className={className} />

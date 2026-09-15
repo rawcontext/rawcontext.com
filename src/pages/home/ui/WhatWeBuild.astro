@@ -1,0 +1,52 @@
+---
+/**
+ * The thesis. Two columns on wide screens, one on narrow; each block rises
+ * into view as it scrolls in, driven by the scroll position where the
+ * browser supports view timelines and simply visible everywhere else.
+ */
+---
+
+<section class="thesis" aria-labelledby="thesis-title">
+	<h2 id="thesis-title" class="thesis__title reveal">
+		The hard part is everything around the model.
+	</h2>
+	<p class="thesis__body reveal">
+		Current models can do most of what people ask of them. In practice they disappoint, because
+		nobody told them what the work was. What a person wants is usually clear in their head and
+		incomplete on the page, and a model only ever sees the page. Deciding what it is shown and
+		what it is allowed to change closes that gap one edge at a time. That is the part we work
+		on.
+	</p>
+</section>
+
+<style>
+	.thesis {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+		gap: clamp(1.5rem, 4vw, 4.5rem);
+		align-items: start;
+		padding: var(--section-block) var(--gutter);
+		border-block-start: var(--rule);
+	}
+
+	.thesis__title {
+		font-size: var(--text-title);
+	}
+
+	.thesis__body {
+		max-inline-size: 34em;
+		font-size: clamp(1.125rem, 1.3vw, 1.3125rem);
+		line-height: 1.55;
+		color: var(--color-fg-body);
+	}
+
+	@supports (animation-timeline: view()) {
+		@media (prefers-reduced-motion: no-preference) {
+			.reveal {
+				animation: rise linear both;
+				animation-timeline: view();
+				animation-range: entry 0% entry 60%;
+			}
+		}
+	}
+</style>

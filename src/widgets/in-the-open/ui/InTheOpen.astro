@@ -1,0 +1,107 @@
+---
+/**
+ * The closing section: a link to the GitHub organisation over a braided
+ * river of particles.
+ */
+import { site } from '@/shared/config';
+import { GitHubIcon } from '@/shared/ui/github-icon';
+---
+
+<section id="open" class="open" data-open aria-labelledby="open-title">
+	<canvas class="open__canvas" data-open-canvas aria-hidden="true"></canvas>
+	<div class="open__copy" data-open-copy>
+		<p id="open-title" class="open__eyebrow">In the open</p>
+		<a class="open__link" href={site.githubUrl} target="_blank" rel="noopener">
+			<GitHubIcon size={72} class="open__icon" />
+			<span class="open__label">GitHub ↗</span>
+		</a>
+		<p class="open__body">Some of what we make is published for anyone to use.</p>
+	</div>
+</section>
+
+<script>
+	import { mountRiverScene } from '../model/scene';
+
+	const canvas = document.querySelector<HTMLCanvasElement>('[data-open-canvas]');
+	const copy = document.querySelector<HTMLElement>('[data-open-copy]');
+	if (canvas && copy) mountRiverScene(canvas, copy);
+</script>
+
+<style>
+	.open {
+		position: relative;
+		isolation: isolate;
+		display: flex;
+		align-items: center;
+		min-block-size: clamp(440px, 72vh, 780px);
+		overflow: hidden;
+		border-block-start: var(--rule);
+		scroll-margin-block-start: 1.5rem;
+	}
+
+	.open__canvas {
+		position: absolute;
+		inset: 0;
+		inline-size: 100%;
+		block-size: 100%;
+		opacity: 0;
+		transition: opacity 1.6s ease;
+
+		&.is-ready {
+			opacity: 1;
+		}
+	}
+
+	.open__copy {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 1.375rem;
+		max-inline-size: 560px;
+		padding: clamp(2.5rem, 7vh, 6rem) var(--gutter);
+	}
+
+	.open__eyebrow {
+		font-family: var(--font-mono);
+		font-size: var(--text-label);
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+		color: var(--color-accent);
+	}
+
+	.open__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 1.125rem;
+		align-self: flex-start;
+		text-decoration: none;
+	}
+
+	.open__icon {
+		flex: none;
+	}
+
+	.open__label {
+		padding-block-end: 4px;
+		border-block-end: 1px solid var(--color-underline);
+		font-size: clamp(1.875rem, 3.6vw, 3.25rem);
+		font-style: italic;
+		font-weight: 300;
+		line-height: 1.05;
+		letter-spacing: -0.02em;
+	}
+
+	.open__body {
+		font-size: var(--text-body);
+		line-height: 1.5;
+		color: var(--color-fg-body);
+	}
+
+	/* One column: the copy on top, the river below. */
+	@media (width < 900px) {
+		.open {
+			align-items: flex-start;
+		}
+	}
+</style>

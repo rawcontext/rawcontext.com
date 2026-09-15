@@ -1,0 +1,68 @@
+---
+/**
+ * The Context mark: a core, its orbit, and one node on the ring.
+ * Decorative by default; the wordmark next to it carries the name.
+ */
+interface Props {
+	size?: number;
+	animated?: boolean;
+	class?: string;
+}
+
+const { size = 24, animated = true, class: className } = Astro.props;
+---
+
+<svg
+	class:list={['mark', className, { 'mark--animated': animated }]}
+	width={size}
+	height={size}
+	viewBox="0 0 100 100"
+	aria-hidden="true"
+	focusable="false"
+>
+	<circle class="mark__ring" cx="50" cy="50" r="38"></circle>
+	<circle class="mark__core" cx="50" cy="50" r="13"></circle>
+	<circle class="mark__node" cx="76.9" cy="23.1" r="8"></circle>
+</svg>
+
+<style>
+	.mark {
+		display: block;
+		overflow: visible;
+		color: currentColor;
+	}
+
+	.mark__ring {
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 4;
+	}
+
+	.mark__core {
+		fill: currentColor;
+	}
+
+	.mark__node {
+		fill: var(--color-bg);
+		stroke: currentColor;
+		stroke-width: 4;
+		transform-box: view-box;
+		transform-origin: 50% 50%;
+	}
+
+	.mark--animated .mark__node {
+		animation: orbit 24s linear infinite;
+	}
+
+	@keyframes orbit {
+		to {
+			rotate: 1turn;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mark--animated .mark__node {
+			animation: none;
+		}
+	}
+</style>

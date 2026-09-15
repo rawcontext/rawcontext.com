@@ -1,0 +1,86 @@
+---
+import { Button } from '@/shared/ui/button';
+---
+
+<form class="waitlist-form" data-waitlist-form>
+	<label class="visually-hidden" for="waitlist-email">Email address</label>
+	<div class="waitlist-form__row">
+		<input
+			class="waitlist-form__input"
+			id="waitlist-email"
+			name="email"
+			type="email"
+			inputmode="email"
+			autocomplete="email"
+			placeholder="you@example.com"
+			required
+		/>
+		<Button type="submit">Join the waitlist</Button>
+	</div>
+	<p class="waitlist-form__status" data-status role="status" aria-live="polite"></p>
+	<div class="waitlist-form__challenge" data-challenge></div>
+</form>
+
+<script>
+	import { initWaitlistForm } from '../model/form';
+
+	for (const form of document.querySelectorAll<HTMLFormElement>('[data-waitlist-form]')) {
+		initWaitlistForm(form);
+	}
+</script>
+
+<style>
+	.waitlist-form {
+		display: flex;
+		flex-direction: column;
+		gap: 0.875rem;
+		max-inline-size: 34em;
+	}
+
+	.waitlist-form__row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem 1.5rem;
+		align-items: flex-end;
+	}
+
+	.waitlist-form__input {
+		flex: 1 1 14em;
+		min-inline-size: 0;
+		padding-block: 0.75rem;
+		border: 0;
+		border-block-end: 1px solid var(--color-underline);
+		border-radius: 0;
+		background: transparent;
+		font-size: var(--text-body);
+		line-height: 1.3;
+		color: var(--color-fg);
+		transition: border-color var(--duration-color) ease;
+
+		&::placeholder {
+			color: var(--color-fg-soft);
+			font-style: italic;
+		}
+
+		&:focus {
+			outline: none;
+			border-color: var(--color-accent);
+		}
+	}
+
+	.waitlist-form__status {
+		min-block-size: 1.5em;
+		font-size: var(--text-nav);
+		font-style: italic;
+		line-height: 1.5;
+		color: var(--color-fg-muted);
+
+		&[data-tone='success'] {
+			color: var(--color-fg);
+		}
+
+		&[data-tone='error'] {
+			color: var(--color-accent);
+		}
+	}
+</style>

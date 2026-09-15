@@ -1,0 +1,96 @@
+---
+/**
+ * The opening statement over a field of particles that periodically resolves
+ * into the mark and into an orrery. The canvas is decorative; the copy is
+ * the content.
+ */
+import { Button } from '@/shared/ui/button';
+---
+
+<section class="hero" data-hero>
+	<canvas class="hero__canvas" data-hero-canvas aria-hidden="true"></canvas>
+	<div class="hero__copy" data-hero-copy>
+		<h1 class="hero__title">Context makes AI <em>useful.</em></h1>
+		<p class="hero__lead">
+			We build software that has a model somewhere inside it, and tools for the people and
+			agents who build that kind of software. We work quietly and ship when something holds
+			up.
+		</p>
+		<p class="hero__cta">
+			<Button href="#open">In the open ↓</Button>
+		</p>
+	</div>
+</section>
+
+<script>
+	import { mountHeroScene } from '../model/scene';
+
+	const canvas = document.querySelector<HTMLCanvasElement>('[data-hero-canvas]');
+	const copy = document.querySelector<HTMLElement>('[data-hero-copy]');
+	if (canvas && copy) mountHeroScene(canvas, copy);
+</script>
+
+<style>
+	.hero {
+		position: relative;
+		isolation: isolate;
+		display: grid;
+		align-items: center;
+		min-block-size: max(100svh, 720px);
+		overflow: hidden;
+	}
+
+	.hero__canvas {
+		position: absolute;
+		inset: 0;
+		inline-size: 100%;
+		block-size: 100%;
+		opacity: 0;
+		transition: opacity 1.6s ease;
+
+		&.is-ready {
+			opacity: 1;
+		}
+	}
+
+	.hero__copy {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 1.875rem;
+		max-inline-size: 680px;
+		padding: clamp(2.5rem, 7vh, 6rem) var(--gutter);
+	}
+
+	.hero__title {
+		font-size: var(--text-display);
+		line-height: 0.95;
+		letter-spacing: var(--tracking-display);
+		animation: rise calc(var(--duration-rise) * 1.1) var(--ease-out) 0.25s both;
+
+		em {
+			font-weight: 300;
+		}
+	}
+
+	.hero__lead {
+		max-inline-size: 31em;
+		font-size: var(--text-lead);
+		line-height: 1.5;
+		color: var(--color-fg-strong);
+		animation: rise var(--duration-rise) var(--ease-out) 0.45s both;
+	}
+
+	.hero__cta {
+		animation: rise var(--duration-rise) var(--ease-out) 0.6s both;
+	}
+
+	/* One column: the copy sits on top and the particles gather below it. */
+	@media (width < 900px) {
+		.hero {
+			grid-template-rows: auto minmax(460px, 1fr);
+			align-items: start;
+		}
+	}
+</style>
