@@ -27,6 +27,9 @@ src/
 
 Each slice exposes an `index.ts`; import slices through it, never through their internals.
 
+The favicon, touch icons, and `logo.*` files in `public/` are rendered from `public/logo.svg` and
+`public/favicon.svg` by `scripts/render-icons.sh` (needs librsvg and ImageMagick).
+
 ## Development
 
 ```bash

@@ -18,6 +18,8 @@ const { title, description = site.description } = Astro.props;
 const pageTitle = title ? `${title} · ${site.name}` : site.name;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL('/og.png', Astro.site);
+/** Bump when the icon files change so browsers drop their cached favicon. */
+const iconVersion = '2026-09';
 ---
 
 <!doctype html>
@@ -29,9 +31,10 @@ const ogImage = new URL('/og.png', Astro.site);
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
 		<meta name="theme-color" content="#f2eee6" />
-		<link rel="icon" href="/favicon.ico" sizes="32x32" />
-		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="icon" href={`/favicon.ico?v=${iconVersion}`} sizes="32x32" />
+		<link rel="icon" href={`/favicon.svg?v=${iconVersion}`} type="image/svg+xml" />
+		<link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${iconVersion}`} />
+		<link rel="manifest" href="/site.webmanifest" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content={site.name} />
 		<meta property="og:title" content={pageTitle} />
